@@ -13,15 +13,21 @@ import org.testcontainers.containers.BrowserWebDriverContainer;
 public class ChromeWebDriverContainerTest extends BaseWebDriverContainerTest {
 
     @Rule
-    public BrowserWebDriverContainer chrome = new BrowserWebDriverContainer();
+    public BrowserWebDriverContainer chrome = new BrowserWebDriverContainer()
+        .withCapabilities(new ChromeOptions());
 
-    @Test
-    public void chromeIsStartedIfNoCapabilitiesProvided() {
+    @Before
+    public void checkBrowserIsIndeedChrome() {
         assertBrowserNameIs(chrome, "chrome");
     }
 
     @Test
-    public void simpleExploreTestWhenNoCapabilitiesProvided(){
+    public void simpleTest() {
+        doSimpleWebdriverTest(chrome);
+    }
+
+    @Test
+    public void simpleExploreTest() {
         doSimpleExplore(chrome);
     }
 }
