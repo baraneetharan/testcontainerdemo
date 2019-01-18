@@ -23,7 +23,8 @@ public class SystemTest {
     private static Network net = Network.newNetwork();
     @Rule
     public BrowserWebDriverContainer chrome = new BrowserWebDriverContainer()
-            .withDesiredCapabilities(DesiredCapabilities.chrome());
+            .withDesiredCapabilities(DesiredCapabilities.chrome())
+        .withRecordingMode(BrowserWebDriverContainer.VncRecordingMode.RECORD_ALL, new File("build"));
 
     @Test
     public void whenNavigatedToPage_thenHeadingIsInThePage() {
